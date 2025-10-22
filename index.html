@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>TeserCorp</title>
+        <title>TeserCorp — Oscuridad púrpura</title>
         <meta name="description" content="TeserCorp — Colectivo de arte y sonido. Fiestas | Visuals | Caos organizado." />
         <meta name="theme-color" content="#7c3aed" />
 
@@ -52,59 +52,6 @@
                 max-width: 1100px;
                 margin-inline: auto;
                 padding: 24px;
-            }
-            /* === RESPONSIVE FIX === */
-            .grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-                gap: 18px;
-            }
-            .card {
-                background: var(--card);
-                border: 1px solid var(--border);
-                border-radius: var(--radius);
-                padding: 18px;
-                box-shadow: var(--shadow);
-            }
-
-            .nav-inner {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                gap: 16px;
-                flex-wrap: wrap;
-            }
-            .menu {
-                display: flex;
-                gap: 12px;
-                flex-wrap: wrap;
-            }
-
-            @media (max-width: 840px) {
-                .nav-inner {
-                    justify-content: center;
-                }
-                .brand {
-                    order: 1;
-                    width: 100%;
-                    display: flex;
-                    justify-content: center;
-                }
-                .cta {
-                    order: 2;
-                }
-                .menu {
-                    order: 3;
-                    width: 100%;
-                    justify-content: center;
-                }
-            }
-
-            .actions {
-                display: flex;
-                gap: 12px;
-                justify-content: center;
-                flex-wrap: wrap;
             }
 
             /* Navbar */
@@ -206,15 +153,16 @@
                 border-top: 1px solid var(--border);
             }
             h2 {
-                font-size: clamp(1.2rem, 1.2rem + 0.6vw, 1.6rem);
+                font-size: 1.6rem;
                 margin: 0 0 18px;
             }
             .grid {
                 display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+                grid-template-columns: repeat(12, 1fr);
                 gap: 18px;
             }
             .card {
+                grid-column: span 4;
                 background: var(--card);
                 border: 1px solid var(--border);
                 border-radius: var(--radius);
@@ -239,8 +187,65 @@
                 }
             }
             @media (max-width: 640px) {
+                .container {
+                    padding: 16px;
+                }
+                .nav-inner {
+                    flex-wrap: wrap;
+                    gap: 10px;
+                }
+                .brand {
+                    font-size: 0.95rem;
+                }
+                .menu {
+                    width: 100%;
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                }
+                .pill,
+                .cta {
+                    padding: 8px 12px;
+                    border-radius: 12px;
+                }
+                .hero {
+                    padding: 48px 0 28px;
+                }
+                .title {
+                    letter-spacing: -0.5px;
+                }
+                .subtitle {
+                    font-size: 0.98rem;
+                }
+                .actions {
+                    gap: 8px;
+                }
+                .btn {
+                    padding: 10px 14px;
+                    font-size: 0.95rem;
+                }
+                .grid {
+                    gap: 14px;
+                }
                 .card {
                     grid-column: span 12;
+                    padding: 14px;
+                }
+            }
+
+            /* tiny phones */
+            @media (max-width: 380px) {
+                .menu {
+                    gap: 8px;
+                }
+                .pill,
+                .cta {
+                    padding: 7px 10px;
+                    font-size: 0.92rem;
+                }
+                .btn {
+                    padding: 9px 12px;
+                    font-size: 0.92rem;
                 }
             }
 
@@ -279,9 +284,9 @@
 
         <!-- HERO -->
         <header class="hero container">
-            <span class="eyebrow">Tesercorp</span>
+            <span class="eyebrow">TeserCorp</span>
             <h1 class="title">Colectivo de arte y sonido</h1>
-            <p class="subtitle">Fiestas | Arte | Caos organizado.</p>
+            <p class="subtitle">Fiestas | Eventos | Arte.</p>
             <div class="actions">
                 <a class="btn primary" href="#eventos">Próximo evento</a>
                 <a class="btn" href="#archivo">Ver archivo</a>
@@ -294,9 +299,9 @@
                 <h2>Eventos</h2>
                 <div class="grid">
                     <article class="card">
-                        <span class="tag">24 OCT · 23:00—06:00</span>
+                        <span class="tag">17 FEB · 23:00—06:00</span>
                         <h3>TESERACTO</h3>
-                        <p>La fiesta por excelencia de Tesercorp.</p>
+                        <p>Ritmos industriales, bass pesado y un viaje visual en púrpura.</p>
                     </article>
                     <article class="card">
                         <span class="tag">Soon</span>
@@ -305,8 +310,8 @@
                     </article>
                     <article class="card">
                         <span class="tag">Soon</span>
-                        <h3>FUEGO</h3>
-                        <p>Un showcase más cálido y latino.</p>
+                        <h3>CHAOS</h3>
+                        <p>Un showcase del colectivo con invitados especiales.</p>
                     </article>
                 </div>
             </div>
@@ -323,11 +328,7 @@
                     </article>
                     <article class="card">
                         <h3>CAPELLA</h3>
-                        <p>Sonido frío y precisión quirúrgica. Resident de TeserCorp.</p>
-                    </article>
-                    <article class="card">
-                        <h3>SO ELECTRIC</h3>
-                        <p>Pura caña.</p>
+                        <p>Visuales hipnóticos, tipografías densas y neón púrpura.</p>
                     </article>
                     <article class="card">
                         <h3>Invitados</h3>
