@@ -399,7 +399,8 @@
                 contact: document.getElementById("tab-contact"),
             };
 
-            function activateTab(name) {
+            function activateTab(name, { scroll = true } = {}) {
+                // Mostrar/ocultar secciones
                 Object.entries(tabs).forEach(([key, el]) => {
                     if (key === name) {
                         el.classList.remove("hidden");
@@ -409,26 +410,51 @@
                         el.classList.remove("active");
                     }
                 });
-                // visual hint on header buttons
+
+                // Marcar visualmente el botón activo
                 buttons.forEach((btn) => {
                     btn.classList.remove("ring-2", "ring-hazard/50");
-                    if (btn.dataset.tab === name) btn.classList.add("ring-2", "ring-hazard/50");
+                    if (btn.dataset.tab === name) {
+                        btn.classList.add("ring-2", "ring-hazard/50");
+                    }
                 });
-                // sync mobile select
+
+                // Sincronizar el <select> móvil
                 const sel = document.getElementById("mobileTabs");
-                if (sel && sel.value !== name) sel.value = name;
-                // scroll into view on mobile
-                window.scrollTo({ top: document.querySelector("header").offsetHeight, behavior: "smooth" });
+                if (sel && sel.value !== name) {
+                    sel.value = name;
+                }
+
+                // Hacer scroll solo si viene de una interacción del user
+                if (scroll) {
+                    const activeSection = document.getElementById(`tab-${name}`);
+                    const headerEl = document.querySelector("header");
+                    const headerHeight = headerEl ? headerEl.offsetHeight : 0;
+
+                    if (activeSection) {
+                        const sectionTop = activeSection.getBoundingClientRect().top + window.scrollY - headerHeight - 20; // margen visual
+
+                        window.scrollTo({
+                            top: sectionTop,
+                            behavior: "smooth",
+                        });
+                    }
+                }
             }
 
-            buttons.forEach((b) => b.addEventListener("click", () => activateTab(b.dataset.tab)));
+            // Eventos click en desktop
+            buttons.forEach((b) => b.addEventListener("click", () => activateTab(b.dataset.tab, { scroll: true })));
+
+            // Evento cambio en móvil
             const mobileSel = document.getElementById("mobileTabs");
-            if (mobileSel) mobileSel.addEventListener("change", (e) => activateTab(e.target.value));
+            if (mobileSel) {
+                mobileSel.addEventListener("change", (e) => activateTab(e.target.value, { scroll: true }));
+            }
 
-            // Default tab
-            activateTab("events");
+            // Tab por defecto al cargar la página (sin hacer scroll)
+            activateTab("events", { scroll: false });
 
-            // Year
+            // Año footer
             document.getElementById("y").textContent = new Date().getFullYear();
         </script>
     </body>
