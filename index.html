@@ -144,7 +144,7 @@
 
                 <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     <!-- TESERACTO -->
-                    <article class="rounded-2xl border border-steel-600 bg-steel-800/50 shadow-pane overflow-hidden flex flex-col hover:translate-y-[-3px] transition-transform">
+                    <article class="event-card rounded-2xl border border-steel-600 bg-steel-800/50 shadow-pane overflow-hidden flex flex-col hover:translate-y-[-3px] transition-transform cursor-pointer" data-event="teseracto">
                         <div class="overflow-hidden">
                             <img src="assets/Teseracto.jpg" alt="Cartel Teseracto — Madrid" class="w-full aspect-square object-cover hover:scale-105 transition-transform duration-300 ease-in-out" loading="lazy" />
                         </div>
@@ -159,7 +159,7 @@
                     </article>
 
                     <!-- EPOKA -->
-                    <article class="rounded-2xl border border-steel-600 bg-steel-800/50 shadow-pane overflow-hidden flex flex-col hover:translate-y-[-3px] transition-transform">
+                    <article class="event-card rounded-2xl border border-steel-600 bg-steel-800/50 shadow-pane overflow-hidden flex flex-col hover:translate-y-[-3px] transition-transform cursor-pointer" data-event="epoka">
                         <div class="overflow-hidden">
                             <img src="assets/epoka.jpg" alt="Cartel Epoka — Pre Halloween" class="w-full aspect-square object-cover hover:scale-105 transition-transform duration-300 ease-in-out" loading="lazy" />
                         </div>
@@ -456,6 +456,17 @@
 
             // Año footer
             document.getElementById("y").textContent = new Date().getFullYear();
+        </script>
+        <script>
+            // Clic en tarjeta -> redirige al detalle
+            document.querySelectorAll(".event-card").forEach((card) => {
+                card.addEventListener("click", (e) => {
+                    // Evita que el botón "COMPRAR TICKETS" dispare también el click general
+                    if (e.target.tagName.toLowerCase() === "a") return;
+                    const id = card.getAttribute("data-event");
+                    window.location.href = `evento.html?id=${encodeURIComponent(id)}`;
+                });
+            });
         </script>
     </body>
 </html>
