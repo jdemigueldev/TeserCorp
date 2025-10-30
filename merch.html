@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>TESERCORP — Merch</title>
+        <meta name="description" content="Detalle de prenda TESERCORP" />
+
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            display: ['"Rajdhani"', "ui-sans-serif", "system-ui"],
+                            mono: ['"JetBrains Mono"', "ui-monospace", "SFMono-Regular"],
+                        },
+                        colors: {
+                            steel: {
+                                900: "#0f1113",
+                                800: "#161a1d",
+                                700: "#1d2328",
+                                600: "#2a3036",
+                                500: "#39424a",
+                            },
+                            hazard: "rgba(156, 5, 202, 0.664)",
+                            oxide: "#B4462A",
+                            signal: "#2C6CFF",
+                            zincish: "#A9B0B7",
+                        },
+                        boxShadow: {
+                            pane: "0 10px 30px rgba(0,0,0,0.35)",
+                        },
+                        backgroundImage: {
+                            plate: "radial-gradient(1200px 600px at 10% -20%, rgba(242,194,0,0.10), transparent 60%), radial-gradient(1200px 600px at 90% 120%, rgba(44,108,255,0.08), transparent 60%)",
+                        },
+                    },
+                },
+            };
+        </script>
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet" />
+    </head>
+
+    <body class="bg-steel-900 text-zinc-200 bg-plate min-h-screen flex flex-col">
+        <header class="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-steel-900/70 border-b border-steel-700/70">
+            <div class="mx-auto max-w-7xl px-4 py-3 flex items-center gap-4">
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <div class="w-9 h-9 grid place-content-center bg-black border-steel-500 rounded-md shadow-inner overflow-hidden">
+                        <img src="assets/cube-teser.jpg" alt="TESERCORP cube" class="w-7 h-7 object-contain" />
+                    </div>
+                    <div class="leading-tight">
+                        <h1 class="font-display text-xl tracking-widest text-white group-hover:text-hazard transition">TESERCORP</h1>
+                        <p class="text-[10px] font-mono text-zincish uppercase leading-none">volver</p>
+                    </div>
+                </a>
+            </div>
+        </header>
+
+        <main class="flex-1">
+            <section class="mx-auto max-w-7xl px-4 py-10 md:py-16 grid md:grid-cols-[1fr,1fr] gap-10 items-start">
+                <!-- Imagen -->
+                <div class="rounded-xl border border-steel-600 bg-black shadow-pane overflow-hidden flex items-center justify-center">
+                    <img id="merchImage" src="" alt="Producto Tesercorp" class="w-full object-contain" />
+                </div>
+
+                <!-- Info -->
+                <div class="flex flex-col gap-6">
+                    <div>
+                        <h2 id="merchName" class="text-4xl text-white font-display leading-[1.1]"></h2>
+                        <p id="merchPrice" class="text-hazard font-mono text-lg mt-1"></p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-white font-semibold text-lg mb-2">Descripción</h3>
+                        <p id="merchDesc" class="text-zinc-300 text-sm leading-relaxed"></p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-white font-semibold text-lg mb-2">Detalles técnicos</h3>
+                        <ul id="merchSpecs" class="text-zinc-300 text-sm font-mono space-y-1"></ul>
+                    </div>
+
+                    <div class="flex flex-wrap gap-3">
+                        <a id="buyBtn" href="#" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg font-mono text-sm bg-hazard text-steel-900 border border-hazard/60 hover:bg-hazard/80 transition">COMPRAR</a>
+                        <a href="index.html" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg font-mono text-sm border border-steel-600 hover:bg-steel-700/60">← Volver</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="border-t border-steel-700/70 mt-auto">
+            <div class="mx-auto max-w-7xl px-4 py-8 text-sm text-zincish flex flex-col md:flex-row gap-3 items-center justify-between">
+                <div>© <span id="y"></span> TESERCORP — Underground Systems</div>
+                <div class="flex items-center gap-4">
+                    <a href="#" class="hover:text-white">Legal</a>
+                    <a href="#" class="hover:text-white">Privacidad</a>
+                    <a href="https://instagram.com/tesercorp" target="_blank" rel="noreferrer" class="hover:text-white">Instagram</a>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            const MERCH = {
+                "hazard-grid": {
+                    image: "assets/shirt.jpg",
+                    name: 'Camiseta "Hazard Grid"',
+                    price: "€35",
+                    desc: "Camiseta pesada con serigrafía al agua. Inspirada en la estética industrial de TESERCORP.",
+                    specs: ["280gsm algodón pesado", "Corte unisex oversize", "Fabricada en la UE", "Tinta serigráfica al agua"],
+                    buy: "#",
+                },
+                "criminal-pants": {
+                    image: "assets/pants.jpg",
+                    name: 'Pants "Criminal"',
+                    price: "€45",
+                    desc: "Joggers de algodón grueso con estampado lateral TESER. Corte relajado y resistente.",
+                    specs: ["280gsm algodón grueso", "Cintura elástica + cordones", "Bolsillos laterales", "Hecho en Portugal"],
+                    buy: "#",
+                },
+                cap: {
+                    image: "assets/cap.jpg",
+                    name: "Cap Tesercorp",
+                    price: "€30",
+                    desc: "Gorra de algodón cepillado con bordado TESER. Diseño ajustable, acabado premium.",
+                    specs: ["100% algodón cepillado", "Bordado frontal TESER", "Cierre metálico ajustable", "Color: negro carbón"],
+                    buy: "#",
+                },
+            };
+
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get("id");
+            const item = MERCH[id];
+
+            if (!item) {
+                document.body.innerHTML = `
+        <main class="min-h-screen flex flex-col items-center justify-center text-center text-zinc-200 p-8 bg-steel-900">
+          <h1 class="text-3xl font-display mb-4">Producto no encontrado</h1>
+          <p class="text-zincish mb-6">El enlace puede haber expirado o la prenda no existe.</p>
+          <a href="index.html" class="px-4 py-2 border border-steel-600 rounded hover:bg-steel-700/60 font-mono text-sm">Volver</a>
+        </main>`;
+            } else {
+                document.getElementById("merchImage").src = item.image;
+                document.getElementById("merchName").textContent = item.name;
+                document.getElementById("merchPrice").textContent = item.price;
+                document.getElementById("merchDesc").textContent = item.desc;
+                item.specs.forEach((spec) => {
+                    const li = document.createElement("li");
+                    li.textContent = spec;
+                    document.getElementById("merchSpecs").appendChild(li);
+                });
+                document.getElementById("buyBtn").href = item.buy;
+            }
+
+            document.getElementById("y").textContent = new Date().getFullYear();
+        </script>
+    </body>
+</html>

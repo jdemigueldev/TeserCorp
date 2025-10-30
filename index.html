@@ -204,7 +204,7 @@
 
                 <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     <!-- Bendite -->
-                    <article class="rounded-xl border border-steel-600 bg-steel-800/50 overflow-hidden shadow-pane">
+                    <article class="artist-card rounded-xl border border-steel-600 bg-steel-800/50 overflow-hidden shadow-pane cursor-pointer hover:translate-y-[-3px] transition-transform" data-artist="bendite">
                         <div class="h-48 relative bg-[length:18px_18px]">
                             <!-- fake dj photo: silhouette -->
                             <svg viewBox="0 0 600 300" class="w-full h-full block">
@@ -232,7 +232,7 @@
                     </article>
 
                     <!-- Capella -->
-                    <article class="rounded-xl border border-steel-600 bg-steel-800/50 overflow-hidden shadow-pane">
+                    <article class="artist-card rounded-xl border border-steel-600 bg-steel-800/50 overflow-hidden shadow-pane cursor-pointer hover:translate-y-[-3px] transition-transform" data-artist="capella">
                         <div class="h-48 relative">
                             <svg viewBox="0 0 600 300" class="w-full h-full block">
                                 <defs>
@@ -277,9 +277,9 @@
 
                 <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     <!-- Tee -->
-                    <article class="rounded-xl border border-steel-600 bg-steel-800/50 overflow-hidden shadow-pane flex flex-col">
+                    <article class="merch-card rounded-xl border border-steel-600 bg-steel-800/50 overflow-hidden shadow-pane flex flex-col cursor-pointer hover:translate-y-[-3px] transition-transform" data-merch="hazard-grid">
                         <div class="h-48 relative overflow-hidden flex items-center justify-center bg-black">
-                            <img src="assets/shirt.jpg" alt="Camiseta Tesercorp" class="object-contain object-center w-full h-full hover:scale-105 transition-transform duration-300 ease-in-out" />
+                            <img src="assets/shirt.jpg" alt="Camiseta Tesercorp Hazard Grid" class="object-contain object-center w-full h-full hover:scale-105 transition-transform duration-300 ease-in-out" />
                         </div>
                         <div class="p-5 flex-1 flex flex-col">
                             <h4 class="text-white font-semibold">Camiseta "Hazard Grid"</h4>
@@ -290,32 +290,31 @@
                             </div>
                         </div>
                     </article>
-
-                    <!-- pants -->
-                    <article class="rounded-xl border border-steel-600 bg-steel-800/50 overflow-hidden shadow-pane flex flex-col">
+                    <!--Pantalones-->
+                    <article class="merch-card rounded-xl border border-steel-600 bg-steel-800/50 overflow-hidden shadow-pane flex flex-col cursor-pointer hover:translate-y-[-3px] transition-transform" data-merch="criminal-pants">
                         <div class="h-48 relative overflow-hidden flex items-center justify-center bg-black">
-                            <img src="assets/pants.jpg" alt="Camiseta Tesercorp" class="object-contain object-center w-full h-full hover:scale-105 transition-transform duration-300 ease-in-out" />
+                            <img src="assets/pants.jpg" alt="Pants Criminal Tesercorp" class="object-contain object-center w-full h-full hover:scale-105 transition-transform duration-300 ease-in-out" />
                         </div>
                         <div class="p-5 flex-1 flex flex-col">
                             <h4 class="text-white font-semibold">Pants "Criminal"</h4>
                             <p class="text-zinc-300 text-sm">Algodón pesado 280gsm. Serigrafía al agua. Unisex.</p>
                             <div class="mt-4 flex items-center justify-between">
-                                <span class="font-mono">€35</span>
+                                <span class="font-mono">€45</span>
                                 <a href="#" class="text-sm font-mono px-3 py-2 border border-hazard/60 rounded hover:bg-hazard/10">Comprar</a>
                             </div>
                         </div>
                     </article>
 
                     <!-- Cap -->
-                    <article class="rounded-xl border border-steel-600 bg-steel-800/50 overflow-hidden shadow-pane flex flex-col">
+                    <article class="merch-card rounded-xl border border-steel-600 bg-steel-800/50 overflow-hidden shadow-pane flex flex-col cursor-pointer hover:translate-y-[-3px] transition-transform" data-merch="cap">
                         <div class="h-48 relative overflow-hidden flex items-center justify-center bg-black">
-                            <img src="assets/cap.jpg" alt="Camiseta Tesercorp" class="object-contain object-center w-full h-full hover:scale-105 transition-transform duration-300 ease-in-out" />
+                            <img src="assets/cap.jpg" alt="Gorra Tesercorp" class="object-contain object-center w-full h-full hover:scale-105 transition-transform duration-300 ease-in-out" />
                         </div>
                         <div class="p-5 flex-1 flex flex-col">
-                            <h4 class="text-white font-semibold">Camiseta "Hazard Grid"</h4>
-                            <p class="text-zinc-300 text-sm">Algodón pesado 280gsm. Serigrafía al agua. Unisex.</p>
+                            <h4 class="text-white font-semibold">Cap Tesercorp</h4>
+                            <p class="text-zinc-300 text-sm">100% algodón cepillado. Bordado frontal TESER. Ajustable.</p>
                             <div class="mt-4 flex items-center justify-between">
-                                <span class="font-mono">€35</span>
+                                <span class="font-mono">€30</span>
                                 <a href="#" class="text-sm font-mono px-3 py-2 border border-hazard/60 rounded hover:bg-hazard/10">Comprar</a>
                             </div>
                         </div>
@@ -465,6 +464,30 @@
                     if (e.target.tagName.toLowerCase() === "a") return;
                     const id = card.getAttribute("data-event");
                     window.location.href = `evento.html?id=${encodeURIComponent(id)}`;
+                });
+            });
+        </script>
+        <script>
+            // Clic en tarjeta de artista -> redirige al detalle del artista
+            document.querySelectorAll(".artist-card").forEach((card) => {
+                card.addEventListener("click", (e) => {
+                    // Evita que los botones internos ("Book", "Escuchar") rompan la navegación
+                    if (e.target.tagName.toLowerCase() === "a") return;
+                    const id = card.getAttribute("data-artist");
+                    if (!id) return;
+                    window.location.href = `artista.html?id=${encodeURIComponent(id)}`;
+                });
+            });
+        </script>
+        <script>
+            // Clic en tarjeta de merch -> redirige a detalle
+            document.querySelectorAll(".merch-card").forEach((card) => {
+                card.addEventListener("click", (e) => {
+                    // Evita conflicto si se clicó el botón "comprar"
+                    if (e.target.tagName.toLowerCase() === "a") return;
+                    const id = card.getAttribute("data-merch");
+                    if (!id) return;
+                    window.location.href = `merch.html?id=${encodeURIComponent(id)}`;
                 });
             });
         </script>
