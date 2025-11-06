@@ -9,7 +9,7 @@
         <meta property="og:description" content="Próximos eventos, artistas, merch, contacto." />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://dummyimage.com/1200x630/111315/ffffff&text=TeserCorp" />
-        <link rel="icon" type="image/jpg" href="assets/cube-teser.jpg" />
+        <link rel="icon" type="image/jpg" href="assets/iconotela.png" />
 
         <!-- Tailwind CSS CDN -->
         <script src="https://cdn.tailwindcss.com"></script>
@@ -30,9 +30,9 @@
                                 600: "#2a3036",
                                 500: "#39424a",
                             },
-                            hazard: "rgba(156, 5, 202, 0.664)",
+                            hazard: "#38c1de",
                             oxide: "#B4462A",
-                            signal: "#2C6CFF",
+                            signal: "#38c1de",
                             zincish: "#A9B0B7",
                         },
                         boxShadow: {
@@ -60,7 +60,7 @@
             }
             /* Divider stripes */
             .stripe {
-                background: repeating-linear-gradient(45deg, rgba(156, 5, 202, 0.664) 0 12px, transparent 12px 24px);
+                background: repeating-linear-gradient(45deg, rgba(56, 193, 222, 0.7) 0 12px, transparent 12px 24px);
                 mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
             }
             /* Focus ring */
@@ -89,6 +89,32 @@
                 background-position: 200% center;
             }
         </style>
+        <style>
+            /* --- Glow azul en los eventos TeserCorp --- */
+            .event-card {
+                transition: box-shadow 0.3s ease, transform 0.3s ease;
+            }
+
+            .event-card:hover {
+                box-shadow: 0 0 25px rgba(56, 193, 222, 0.45), 0 0 45px rgba(56, 193, 222, 0.25);
+                transform: translateY(-3px);
+                border-color: #38c1de;
+            }
+
+            /* (Opcional) efecto de pulso suave */
+            @keyframes pulseGlow {
+                from {
+                    box-shadow: 0 0 15px rgba(56, 193, 222, 0.25);
+                }
+                to {
+                    box-shadow: 0 0 35px rgba(56, 193, 222, 0.45);
+                }
+            }
+
+            .event-card:hover {
+                animation: pulseGlow 1.5s infinite alternate;
+            }
+        </style>
     </head>
     <body class="bg-steel-900 text-zinc-200 bg-plate">
         <!-- Top bar -->
@@ -96,7 +122,7 @@
             <div class="mx-auto max-w-7xl px-4 py-3 flex items-center gap-4">
                 <a href="#" class="flex items-center gap-3 group">
                     <div class="w-9 h-9 grid place-content-center bg-black border-steel-500 rounded-md shadow-inner overflow-hidden">
-                        <img src="assets/cube-teser.jpg" alt="TESERCORP cube" class="w-7 h-7 object-contain" />
+                        <img src="assets/iconotela.png" alt="TESERCORP cube" class="w-7 h-7 object-contain" />
                     </div>
                     <div class="leading-tight">
                         <h1 class="font-display text-xl tracking-widest text-white group-hover:text-hazard transition">
@@ -149,10 +175,8 @@
                         </button>
                     </div>
                 </div>
-                <div class="relative">
-                    <div class="aspect-square md:aspect-[4/3] rounded-xl border border-steel-600 bg-black shadow-pane overflow-hidden flex items-center justify-center">
-                        <img src="assets/cube-teser.jpg" alt="TESERCORP cube mark" class="object-contain object-center w-[80%] h-[80%]" />
-                    </div>
+                <div class="rounded-2xl border border-steel-600 bg-black shadow-pane overflow-hidden">
+                    <video src="assets/Russian Kid Dancing - Velocity Edit.mp4" autoplay muted loop playsinline class="w-full h-full object-cover"></video>
                 </div>
             </div>
         </section>
