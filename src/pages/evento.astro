@@ -1,0 +1,137 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout 
+	title="TESERCORP — Evento" 
+	description="Detalles del evento TESERCORP"
+>
+	<!-- HEADER -->
+	<header class="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-steel-900/70 border-b border-steel-700/70">
+		<div class="mx-auto max-w-7xl px-4 py-3 flex items-center gap-4">
+			<a href="/" class="flex items-center gap-3 group">
+				<div class="w-9 h-9 grid place-content-center bg-black border-steel-500 rounded-md shadow-inner overflow-hidden">
+					<img src="/cube-teser.jpg" alt="TESERCORP cube" class="w-7 h-7 object-contain" />
+				</div>
+				<div class="leading-tight">
+					<h1 class="font-display text-xl tracking-widest text-white group-hover:text-hazard transition">TESERCORP</h1>
+					<p class="text-[10px] font-mono text-zincish uppercase leading-none">volver</p>
+				</div>
+			</a>
+
+			<div class="ml-auto">
+				<a id="ticketsBtn" href="#" class="px-4 py-2 text-xs tracking-wide uppercase border border-hazard/60 rounded-md hover:bg-hazard/10 font-mono">Tickets</a>
+			</div>
+		</div>
+	</header>
+
+	<!-- MAIN -->
+	<main class="flex-1">
+		<section class="mx-auto max-w-7xl px-4 py-10 md:py-16 grid md:grid-cols-[1fr,1fr] gap-10 items-start">
+			<!-- Poster -->
+			<div class="rounded-xl border border-steel-600 bg-black shadow-pane overflow-hidden">
+				<img id="eventPoster" src="" alt="Cartel evento" class="w-full object-cover" />
+			</div>
+
+			<!-- Info -->
+			<div class="flex flex-col gap-6">
+				<div>
+					<p id="eventDate" class="text-xs tracking-wider text-zincish uppercase"></p>
+					<h2 id="eventCity" class="mt-1 text-3xl text-white font-display leading-[1.1]"></h2>
+					<p id="eventVenue" class="text-sm text-zinc-300"></p>
+				</div>
+
+				<div>
+					<h3 class="text-white font-semibold text-lg mb-2">Descripción</h3>
+					<p id="eventLongDesc" class="text-zinc-300 text-sm leading-relaxed"></p>
+				</div>
+
+				<div>
+					<h3 class="text-white font-semibold text-lg mb-2">Lineup</h3>
+					<ul id="eventLineup" class="text-zinc-300 text-sm font-mono space-y-2"></ul>
+				</div>
+
+				<div class="flex flex-wrap gap-3">
+					<a id="buyBtn" href="#" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg font-mono text-sm bg-hazard text-steel-900 border border-hazard/60 hover:bg-hazard/80 transition"> COMPRAR TICKETS </a>
+					<a href="/" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg font-mono text-sm border border-steel-600 hover:bg-steel-700/60"> ← Volver </a>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<Footer />
+
+	<script>
+		// Datos de los eventos
+		const EVENTS: Record<string, {
+			poster: string;
+			date: string;
+			city: string;
+			venue: string;
+			longDesc: string;
+			lineup: string[];
+			ticketsUrl: string;
+		}> = {
+			teseracto: {
+				poster: "/Teseracto.jpg",
+				date: "Miércoles, 20 de DICIEMBRE 2023",
+				city: "Madrid, SPAIN",
+				venue: "Sala Specka · C/ de Orense 26",
+				longDesc: "Sesión de presión continua orientada al subsuelo. Industrial / hardgroove / resistencia. Cero móviles en cabina. Iluminación mínima. Captura de audio directa para archivo Tesercorp.",
+				lineup: ["23:30 — Bendite (Industrial Grooves)", "01:00 — Capella (Electro / Breaks)", "02:30 — Cierre sorpresa · Ácido"],
+				ticketsUrl: "#",
+			},
+			epoka: {
+				poster: "/epoka.jpg",
+				date: "Jueves, 24 de OCTUBRE 2024",
+				city: "Madrid, SPAIN",
+				venue: "Sala El Club · Chamberí",
+				longDesc: "Pre-Halloween ritual. Baile oscuro, sudor pared a pared, dresscode libre pero cero disfraces comerciales. Ritmos acelerados + bajo saturado para sala pequeña, aforo limitado.",
+				lineup: ["00:00 — Warmup: 140bpm breaks / bass", "01:30 — Bendite (Hardgroove set)", "03:00 — Invitado intl. · set sorpresa"],
+				ticketsUrl: "#",
+			},
+		};
+
+		// Extraer ID del evento desde la URL
+		const params = new URLSearchParams(window.location.search);
+		const id = params.get("id");
+		const event = id ? EVENTS[id] : null;
+
+		if (!event) {
+			document.body.innerHTML = `
+		<main class="min-h-screen flex flex-col items-center justify-center text-center text-zinc-200 p-8 bg-steel-900">
+		  <h1 class="text-3xl font-display mb-4">Evento no encontrado</h1>
+		  <p class="text-zincish mb-6">El enlace puede haber expirado o el evento no existe.</p>
+		  <a href="/" class="px-4 py-2 border border-steel-600 rounded hover:bg-steel-700/60 font-mono text-sm">Volver</a>
+		</main>`;
+		} else {
+			// Pinta la info
+			const eventPoster = document.getElementById("eventPoster") as HTMLImageElement;
+			const eventDate = document.getElementById("eventDate");
+			const eventCity = document.getElementById("eventCity");
+			const eventVenue = document.getElementById("eventVenue");
+			const eventLongDesc = document.getElementById("eventLongDesc");
+			const lineupList = document.getElementById("eventLineup");
+			const buyBtn = document.getElementById("buyBtn") as HTMLAnchorElement;
+			const ticketsBtn = document.getElementById("ticketsBtn") as HTMLAnchorElement;
+
+			if (eventPoster) eventPoster.src = event.poster;
+			if (eventDate) eventDate.textContent = event.date;
+			if (eventCity) eventCity.textContent = event.city;
+			if (eventVenue) eventVenue.textContent = event.venue;
+			if (eventLongDesc) eventLongDesc.textContent = event.longDesc;
+
+			if (lineupList) {
+				event.lineup.forEach((line) => {
+					const li = document.createElement("li");
+					li.textContent = line;
+					lineupList.appendChild(li);
+				});
+			}
+
+			if (buyBtn) buyBtn.href = event.ticketsUrl;
+			if (ticketsBtn) ticketsBtn.href = event.ticketsUrl;
+		}
+	</script>
+</BaseLayout>

@@ -1,0 +1,469 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout 
+	title="TeserCorp" 
+	description="TESERCORP: underground collective. Eventos, artistas, merch. Madrid / EU."
+	ogTitle="TESERCORP — Landing"
+	ogDescription="Próximos eventos, artistas, merch, contacto."
+>
+	<style>
+		/* --- Glow azul en los eventos TeserCorp --- */
+		.event-card {
+			transition: box-shadow 0.3s ease, transform 0.3s ease;
+		}
+
+		.event-card:hover {
+			box-shadow: 0 0 25px rgba(56, 193, 222, 0.45), 0 0 45px rgba(56, 193, 222, 0.25);
+			transform: translateY(-3px);
+			border-color: #38c1de;
+		}
+
+		/* (Opcional) efecto de pulso suave */
+		@keyframes pulseGlow {
+			from {
+				box-shadow: 0 0 15px rgba(56, 193, 222, 0.25);
+			}
+			to {
+				box-shadow: 0 0 35px rgba(56, 193, 222, 0.45);
+			}
+		}
+
+		.event-card:hover {
+			animation: pulseGlow 1.5s infinite alternate;
+		}
+	</style>
+
+	<Header showTabs={true} />
+
+	<!-- Hero -->
+	<section class="relative overflow-hidden">
+		<div class="mx-auto max-w-7xl px-4 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
+			<div>
+				<p class="font-mono uppercase tracking-widest text-zincish">Unidad · Ruido · Movimiento</p>
+				<h2 class="mt-2 font-display text-4xl md:text-6xl text-white leading-[1.05]">Colectivo de<span class="text-hazard"> arte y sonido.</span></h2>
+				<p class="mt-5 text-zinc-300 max-w-xl">Tesercorp es un colectivo underground: eventos en espacios no convencionales, artistas emergentes y piezas de merch diseñadas para durar. Madrid / EU.</p>
+				<div class="mt-8 flex flex-wrap gap-3">
+					<button data-tab="events" class="tab-btn inline-flex items-center gap-2 px-5 py-3 border border-hazard/60 rounded-lg hover:bg-hazard/10">
+						<span class="font-mono">Ver próximos eventos</span>
+					</button>
+					<button data-tab="artists" class="tab-btn inline-flex items-center gap-2 px-5 py-3 border border-signal/60 rounded-lg hover:bg-signal/10">
+						<span class="font-mono">Artistas</span>
+					</button>
+					<button data-tab="merch" class="tab-btn inline-flex items-center gap-2 px-5 py-3 border border-steel-500 rounded-lg hover:bg-steel-700/60">
+						<span class="font-mono">Merch</span>
+					</button>
+					<button data-tab="blog" class="tab-btn inline-flex items-center gap-2 px-5 py-3 border border-steel-500 rounded-lg hover:bg-steel-700/60">
+						<span class="font-mono">Blog</span>
+					</button>
+				</div>
+			</div>
+			<div class="rounded-2xl border border-steel-600 bg-black shadow-pane overflow-hidden">
+				<video src="/Russian Kid Dancing - Velocity Edit.mp4" autoplay muted loop playsinline class="w-full h-full object-cover"></video>
+			</div>
+		</div>
+	</section>
+
+	<!-- Tabs content wrapper -->
+	<main class="mx-auto max-w-7xl px-4 pb-24">
+		<!-- EVENTS TAB -->
+		<section id="tab-events" class="tab active">
+			<div class="mb-6 flex items-center gap-3">
+				<h3 class="font-display text-2xl md:text-3xl text-white">Próximos eventos</h3>
+				<span class="px-2 py-1 text-xs font-mono border border-hazard/60 rounded">LIVE</span>
+			</div>
+
+			<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+				<!-- TESERACTO -->
+				<article class="event-card rounded-2xl border border-steel-600 bg-steel-800/50 shadow-pane overflow-hidden flex flex-col hover:translate-y-[-3px] transition-transform cursor-pointer" data-event="teseracto">
+					<div class="overflow-hidden">
+						<img src="/Teseracto.jpg" alt="Cartel Teseracto — Madrid" class="w-full aspect-square object-cover hover:scale-105 transition-transform duration-300 ease-in-out" loading="lazy" />
+					</div>
+					<div class="px-6 py-5 flex-1 flex flex-col justify-between">
+						<div>
+							<p class="text-xs tracking-wider text-zincish uppercase">Miércoles, 20 de DICIEMBRE 2023</p>
+							<h4 class="mt-1 text-lg md:text-xl text-white font-semibold">Madrid, <span class="uppercase">SPAIN</span></h4>
+							<p class="text-sm text-zinc-300">Sala Specka · C/ de Orense 26</p>
+						</div>
+						<a href="#" class="mt-5 w-full inline-flex justify-center items-center px-4 py-3 rounded-xl font-mono text-sm bg-hazard text-steel-900 border border-hazard/60 hover:bg-hazard/80 transition"> COMPRAR TICKETS </a>
+					</div>
+				</article>
+
+				<!-- EPOKA -->
+				<article class="event-card rounded-2xl border border-steel-600 bg-steel-800/50 shadow-pane overflow-hidden flex flex-col hover:translate-y-[-3px] transition-transform cursor-pointer" data-event="epoka">
+					<div class="overflow-hidden">
+						<img src="/epoka.jpg" alt="Cartel Epoka — Pre Halloween" class="w-full aspect-square object-cover hover:scale-105 transition-transform duration-300 ease-in-out" loading="lazy" />
+					</div>
+					<div class="px-6 py-5 flex-1 flex flex-col justify-between">
+						<div>
+							<p class="text-xs tracking-wider text-zincish uppercase">Jueves, 24 de OCTUBRE 2024</p>
+							<h4 class="mt-1 text-lg md:text-xl text-white font-semibold">Madrid, <span class="uppercase">SPAIN</span></h4>
+							<p class="text-sm text-zinc-300">Sala El Club · Chamberí</p>
+						</div>
+						<a href="#" class="mt-5 w-full inline-flex justify-center items-center px-4 py-3 rounded-xl font-mono text-sm bg-hazard text-steel-900 border border-hazard/60 hover:bg-hazard/80 transition"> COMPRAR TICKETS </a>
+					</div>
+				</article>
+
+				<!-- PLACEHOLDER (opcional) -->
+				<article class="rounded-2xl border border-steel-600 bg-steel-800/30 shadow-pane p-6 flex items-center justify-center hover:translate-y-[-3px] transition-transform">
+					<div class="text-center">
+						<p class="text-xs tracking-wider text-zincish uppercase">Muy pronto</p>
+						<h4 class="mt-1 text-lg md:text-xl text-white font-semibold">Nuevo anuncio</h4>
+						<p class="text-sm text-zinc-300">Suscríbete a la newsletter para enterarte primero.</p>
+					</div>
+				</article>
+			</div>
+
+			<!-- CTA banner -->
+			<div class="mt-8 rounded-xl border border-steel-600 bg-steel-800/60 p-5 md:p-6 flex flex-col md:flex-row items-start md:items-center gap-4">
+				<div class="flex-1">
+					<p class="font-mono text-sm text-zincish">Newsletter</p>
+					<h5 class="text-white text-xl">Acceso anticipado a tickets + ubicaciones secretas</h5>
+				</div>
+				<form class="w-full md:w-auto flex gap-3">
+					<input type="email" required placeholder="tu@email.com" class="bg-steel-900 border border-steel-600 rounded-md px-4 py-2 w-full md:w-72" />
+					<button class="px-4 py-2 bg-hazard text-steel-900 rounded-md font-mono hover:bg-hazard/90 transition">Unirme</button>
+				</form>
+			</div>
+		</section>
+
+		<!-- ARTISTS TAB -->
+		<section id="tab-artists" class="tab hidden">
+			<div class="mb-6 flex items-center gap-3">
+				<h3 class="font-display text-2xl md:text-3xl text-white">Artistas residentes</h3>
+				<span class="px-2 py-1 text-xs font-mono border border-signal/60 rounded">RESIDENTS</span>
+			</div>
+
+			<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+				<!-- Bendite -->
+				<article class="artist-card rounded-xl border border-steel-600 bg-steel-800/50 overflow-hidden shadow-pane cursor-pointer hover:translate-y-[-3px] transition-transform" data-artist="bendite">
+					<div class="h-48 relative bg-[length:18px_18px]">
+						<!-- fake dj photo: silhouette -->
+						<svg viewBox="0 0 600 300" class="w-full h-full block">
+							<defs>
+								<linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+									<stop offset="0%" stop-color="#2A3036" />
+									<stop offset="100%" stop-color="#39424A" />
+								</linearGradient>
+							</defs>
+							<rect width="100%" height="100%" fill="url(#g1)" />
+							<circle cx="120" cy="160" r="56" fill="#0f1113" />
+							<rect x="70" y="200" width="100" height="70" rx="12" fill="#0f1113" />
+							<rect x="220" y="220" width="320" height="24" rx="4" fill="#B4462A" opacity="0.6" />
+							<rect x="220" y="250" width="260" height="18" rx="4" fill="#F2C200" opacity="0.5" />
+						</svg>
+					</div>
+					<div class="p-5">
+						<h4 class="text-white text-lg font-semibold">Bendite</h4>
+						<p class="text-zinc-300 text-sm">Hardgroove / Industrial techno. Sets de alta presión con percusiones metálicas y grooves latentes. Resident de TESER desde 2025.</p>
+						<div class="mt-4 flex gap-3">
+							<a href="#" class="text-sm font-mono px-3 py-2 border border-steel-500 rounded hover:bg-steel-700/60">Escuchar</a>
+							<a href="#" class="text-sm font-mono px-3 py-2 border border-hazard/60 rounded hover:bg-hazard/10">Book</a>
+						</div>
+					</div>
+				</article>
+
+				<!-- Capella -->
+				<article class="artist-card rounded-xl border border-steel-600 bg-steel-800/50 overflow-hidden shadow-pane cursor-pointer hover:translate-y-[-3px] transition-transform" data-artist="capella">
+					<div class="h-48 relative">
+						<svg viewBox="0 0 600 300" class="w-full h-full block">
+							<defs>
+								<linearGradient id="g2" x1="1" y1="0" x2="0" y2="1">
+									<stop offset="0%" stop-color="#2C6CFF" stop-opacity="0.35" />
+									<stop offset="100%" stop-color="#161a1d" />
+								</linearGradient>
+							</defs>
+							<rect width="100%" height="100%" fill="url(#g2)" />
+							<rect x="90" y="140" width="120" height="120" rx="14" fill="#0f1113" />
+							<circle cx="150" cy="170" r="34" fill="#0f1113" />
+							<rect x="250" y="230" width="300" height="30" rx="6" fill="#F2C200" opacity="0.45" />
+						</svg>
+					</div>
+					<div class="p-5">
+						<h4 class="text-white text-lg font-semibold">Capella</h4>
+						<p class="text-zinc-300 text-sm">Electro / Breaks con ADN rave. Texturas analógicas y bajos elásticos para sets de tarde y cierres ácidos.</p>
+						<div class="mt-4 flex gap-3">
+							<a href="#" class="text-sm font-mono px-3 py-2 border border-steel-500 rounded hover:bg-steel-700/60">Escuchar</a>
+							<a href="#" class="text-sm font-mono px-3 py-2 border border-hazard/60 rounded hover:bg-hazard/10">Book</a>
+						</div>
+					</div>
+				</article>
+
+				<!-- Resident tag -->
+				<article class="rounded-xl border border-steel-600 bg-steel-800/50 overflow-hidden shadow-pane flex items-center justify-center p-6">
+					<div class="text-center">
+						<p class="text-zincish text-xs">Roster abierto</p>
+						<h4 class="text-white text-lg font-semibold">¿Quieres formar parte?</h4>
+						<a href="#" class="mt-3 inline-block text-sm font-mono px-3 py-2 border border-signal/60 rounded hover:bg-signal/10">Enviar press kit</a>
+					</div>
+				</article>
+			</div>
+		</section>
+
+		<!-- MERCH TAB -->
+		<section id="tab-merch" class="tab hidden">
+			<div class="mb-6 flex items-center gap-3">
+				<h3 class="font-display text-2xl md:text-3xl text-white">Merch</h3>
+				<span class="px-2 py-1 text-xs font-mono border border-hazard/60 rounded">DROP 01</span>
+			</div>
+
+			<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+				<!-- Tee -->
+				<article class="merch-card rounded-xl border border-steel-600 bg-steel-800/50 overflow-hidden shadow-pane flex flex-col cursor-pointer hover:translate-y-[-3px] transition-transform" data-merch="hazard-grid">
+					<div class="h-48 relative overflow-hidden flex items-center justify-center bg-black">
+						<img src="/shirt.jpg" alt="Camiseta Tesercorp Hazard Grid" class="object-contain object-center w-full h-full hover:scale-105 transition-transform duration-300 ease-in-out" />
+					</div>
+					<div class="p-5 flex-1 flex flex-col">
+						<h4 class="text-white font-semibold">Camiseta "Hazard Grid"</h4>
+						<p class="text-zinc-300 text-sm">Algodón pesado 280gsm. Serigrafía al agua. Unisex.</p>
+						<div class="mt-4 flex items-center justify-between">
+							<span class="font-mono">€35</span>
+							<a href="#" class="text-sm font-mono px-3 py-2 border border-hazard/60 rounded hover:bg-hazard/10">Comprar</a>
+						</div>
+					</div>
+				</article>
+				<!--Pantalones-->
+				<article class="merch-card rounded-xl border border-steel-600 bg-steel-800/50 overflow-hidden shadow-pane flex flex-col cursor-pointer hover:translate-y-[-3px] transition-transform" data-merch="criminal-pants">
+					<div class="h-48 relative overflow-hidden flex items-center justify-center bg-black">
+						<img src="/pants.jpg" alt="Pants Criminal Tesercorp" class="object-contain object-center w-full h-full hover:scale-105 transition-transform duration-300 ease-in-out" />
+					</div>
+					<div class="p-5 flex-1 flex flex-col">
+						<h4 class="text-white font-semibold">Pants "Criminal"</h4>
+						<p class="text-zinc-300 text-sm">Algodón pesado 280gsm. Serigrafía al agua. Unisex.</p>
+						<div class="mt-4 flex items-center justify-between">
+							<span class="font-mono">€45</span>
+							<a href="#" class="text-sm font-mono px-3 py-2 border border-hazard/60 rounded hover:bg-hazard/10">Comprar</a>
+						</div>
+					</div>
+				</article>
+
+				<!-- Cap -->
+				<article class="merch-card rounded-xl border border-steel-600 bg-steel-800/50 overflow-hidden shadow-pane flex flex-col cursor-pointer hover:translate-y-[-3px] transition-transform" data-merch="cap">
+					<div class="h-48 relative overflow-hidden flex items-center justify-center bg-black">
+						<img src="/cap.jpg" alt="Gorra Tesercorp" class="object-contain object-center w-full h-full hover:scale-105 transition-transform duration-300 ease-in-out" />
+					</div>
+					<div class="p-5 flex-1 flex flex-col">
+						<h4 class="text-white font-semibold">Cap Tesercorp</h4>
+						<p class="text-zinc-300 text-sm">100% algodón cepillado. Bordado frontal TESER. Ajustable.</p>
+						<div class="mt-4 flex items-center justify-between">
+							<span class="font-mono">€30</span>
+							<a href="#" class="text-sm font-mono px-3 py-2 border border-hazard/60 rounded hover:bg-hazard/10">Comprar</a>
+						</div>
+					</div>
+				</article>
+			</div>
+
+			<!-- Size/help -->
+			<div class="mt-8 rounded-xl border border-steel-600 bg-steel-800/60 p-5 md:p-6 flex flex-col md:flex-row items-start md:items-center gap-4">
+				<div class="flex-1">
+					<p class="font-mono text-sm text-zincish">Guía</p>
+					<h5 class="text-white text-xl">Cambios de talla en 30 días · Envío EU</h5>
+				</div>
+				<div class="flex gap-3">
+					<a href="#" class="px-4 py-2 border border-steel-500 rounded hover:bg-steel-700/60 font-mono text-sm">Guía de tallas</a>
+					<a href="#" class="px-4 py-2 border border-hazard/60 rounded hover:bg-hazard/10 font-mono text-sm">Política de envíos</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- BLOG TAB -->
+		<section id="tab-blog" class="tab hidden">
+			<div class="mb-6 flex items-center gap-3">
+				<h3 class="font-display text-2xl md:text-3xl text-white">Blog / Journal</h3>
+				<span class="px-2 py-1 text-xs font-mono border border-steel-600 rounded">NEW</span>
+			</div>
+
+			<p class="text-zinc-300 mb-6 max-w-2xl">Actualizaciones del colectivo, recaps de las fiestas, drops y artículos interesantes.</p>
+
+			<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+				<!-- POST 1 -->
+				<article class="blog-card rounded-2xl border border-steel-600 bg-steel-800/40 shadow-pane p-5 flex flex-col gap-3 cursor-pointer transform transition-all duration-300 ease-in-out hover:scale-[1.02] hover:-translate-y-1 hover:bg-steel-800/70" data-post="recap-teseracto">
+					<p class="text-[11px] font-mono uppercase tracking-widest text-zincish">27 OCT 2025 · EVENTO</p>
+					<h4 class="text-white text-lg font-semibold">Recap: TESERACTO en Specka</h4>
+					<p class="text-zinc-300 text-sm">Cómo montamos la iluminación mínima, el set de Bendite y la captura de audio para archivo TESER...</p>
+					<span class="text-xs font-mono text-hazard">Leer más →</span>
+				</article>
+
+				<!-- POST 2 -->
+				<article class="blog-card rounded-2xl border border-steel-600 bg-steel-800/40 shadow-pane p-5 flex flex-col gap-3 cursor-pointer transform transition-all duration-300 ease-in-out hover:scale-[1.02] hover:-translate-y-1 hover:bg-steel-800/70" data-post="industrial-2026">
+					<p class="text-[11px] font-mono uppercase tracking-widest text-zincish">23 OCT 2025 · ARTÍCULO</p>
+					<h4 class="text-white text-lg font-semibold">Industrial / hardgroove: hacia dónde va</h4>
+					<p class="text-zinc-300 text-sm">Referencias, BPM y por qué estamos tirando a sonido más físico en salas pequeñas.</p>
+					<span class="text-xs font-mono text-hazard">Leer más →</span>
+				</article>
+
+				<!-- POST 3 -->
+				<article class="blog-card rounded-2xl border border-steel-600 bg-steel-800/40 shadow-pane p-5 flex flex-col gap-3 cursor-pointer transform transition-all duration-300 ease-in-out hover:scale-[1.02] hover:-translate-y-1 hover:bg-steel-800/70" data-post="drop-01">
+					<p class="text-[11px] font-mono uppercase tracking-widest text-zincish">20 OCT 2025 · DROP</p>
+					<h4 class="text-white text-lg font-semibold">Drop 01: ropa funcional para club</h4>
+					<p class="text-zinc-300 text-sm">Por qué usamos 280gsm, por qué bordado y no print, y cómo lo hacemos en EU.</p>
+					<span class="text-xs font-mono text-hazard">Leer más →</span>
+				</article>
+			</div>
+		</section>
+
+		<!-- CONTACT TAB -->
+		<section id="tab-contact" class="tab hidden">
+			<div class="mb-6 flex items-center gap-3">
+				<h3 class="font-display text-2xl md:text-3xl text-white">Contacto</h3>
+				<span class="px-2 py-1 text-xs font-mono border border-steel-600 rounded">Direct</span>
+			</div>
+
+			<div class="grid md:grid-cols-2 gap-8">
+				<form class="rounded-xl border border-steel-600 bg-steel-800/50 p-6 shadow-pane">
+					<div class="grid sm:grid-cols-2 gap-4">
+						<label class="block">
+							<span class="text-sm text-zincish">Nombre</span>
+							<input type="text" required class="mt-1 w-full bg-steel-900 border border-steel-600 rounded-md px-3 py-2" />
+						</label>
+						<label class="block">
+							<span class="text-sm text-zincish">Email</span>
+							<input type="email" required class="mt-1 w-full bg-steel-900 border border-steel-600 rounded-md px-3 py-2" />
+						</label>
+					</div>
+					<label class="block mt-4">
+						<span class="text-sm text-zincish">Mensaje</span>
+						<textarea rows="5" required class="mt-1 w-full bg-steel-900 border border-steel-600 rounded-md px-3 py-2"></textarea>
+					</label>
+					<div class="mt-5 flex items-center gap-3">
+						<button type="submit" class="px-5 py-2 bg-hazard text-steel-900 rounded-md font-mono">Enviar</button>
+						<a href="mailto:contact@tesercorp.com" class="text-sm underline text-zincish hover:text-white">o escribe a contact@tesercorp.com</a>
+					</div>
+				</form>
+
+				<aside class="rounded-xl border border-steel-600 bg-steel-800/50 p-6 shadow-pane flex flex-col gap-4">
+					<h4 class="text-white font-semibold">Booking / Colaboraciones</h4>
+					<p class="text-zinc-300">Para artistas, marcas o espacios. Envíanos press kit / rider técnico y propuesta.</p>
+					<ul class="text-zinc-300 text-sm space-y-2">
+						<li><span class="font-mono text-hazard">IG</span> <a class="underline hover:text-white" href="https://instagram.com/tesercorp" target="_blank" rel="noreferrer">@tesercorp</a></li>
+						<li><span class="font-mono text-hazard">TK</span> <a class="underline hover:text-white" href="#">@tesercorp</a></li>
+						<li><span class="font-mono text-hazard">EM</span> contact@tesercorp.com</li>
+					</ul>
+					<div class="mt-2 text-xs text-zincish">Respuesta en 24–72h.</div>
+				</aside>
+			</div>
+		</section>
+	</main>
+
+	<Footer />
+
+	<script>
+		// Tab logic
+		const buttons = document.querySelectorAll(".tab-btn");
+		const tabs = {
+			events: document.getElementById("tab-events"),
+			artists: document.getElementById("tab-artists"),
+			merch: document.getElementById("tab-merch"),
+			blog: document.getElementById("tab-blog"),
+			contact: document.getElementById("tab-contact"),
+		};
+
+		function activateTab(name: string, { scroll = true } = {}) {
+			// Mostrar/ocultar secciones
+			Object.entries(tabs).forEach(([key, el]) => {
+				if (key === name) {
+					el?.classList.remove("hidden");
+					el?.classList.add("active");
+				} else {
+					el?.classList.add("hidden");
+					el?.classList.remove("active");
+				}
+			});
+
+			// Marcar visualmente el botón activo
+			buttons.forEach((btn) => {
+				btn.classList.remove("ring-2", "ring-hazard/50");
+				if (btn.getAttribute("data-tab") === name) {
+					btn.classList.add("ring-2", "ring-hazard/50");
+				}
+			});
+
+			// Sincronizar el <select> móvil
+			const sel = document.getElementById("mobileTabs") as HTMLSelectElement;
+			if (sel && sel.value !== name) {
+				sel.value = name;
+			}
+
+			// Hacer scroll solo si viene de una interacción del user
+			if (scroll) {
+				const activeSection = document.getElementById(`tab-${name}`);
+				const headerEl = document.querySelector("header");
+				const headerHeight = headerEl ? headerEl.offsetHeight : 0;
+
+				if (activeSection) {
+					const sectionTop = activeSection.getBoundingClientRect().top + window.scrollY - headerHeight - 20; // margen visual
+
+					window.scrollTo({
+						top: sectionTop,
+						behavior: "smooth",
+					});
+				}
+			}
+		}
+
+		// Eventos click en desktop
+		buttons.forEach((b) => b.addEventListener("click", () => activateTab(b.getAttribute("data-tab") || "events", { scroll: true })));
+
+		// Evento cambio en móvil
+		const mobileSel = document.getElementById("mobileTabs");
+		if (mobileSel) {
+			mobileSel.addEventListener("change", (e) => activateTab((e.target as HTMLSelectElement).value, { scroll: true }));
+		}
+
+		// Tab por defecto al cargar la página (sin hacer scroll)
+		activateTab("events", { scroll: false });
+	</script>
+
+	<script>
+		// Clic en tarjeta -> redirige al detalle
+		document.querySelectorAll(".event-card").forEach((card) => {
+			card.addEventListener("click", (e) => {
+				// Evita que el botón "COMPRAR TICKETS" dispare también el click general
+				if ((e.target as HTMLElement).tagName.toLowerCase() === "a") return;
+				const id = card.getAttribute("data-event");
+				window.location.href = `/evento?id=${encodeURIComponent(id || "")}`;
+			});
+		});
+	</script>
+
+	<script>
+		// Clic en tarjeta de artista -> redirige al detalle del artista
+		document.querySelectorAll(".artist-card").forEach((card) => {
+			card.addEventListener("click", (e) => {
+				// Evita que los botones internos ("Book", "Escuchar") rompan la navegación
+				if ((e.target as HTMLElement).tagName.toLowerCase() === "a") return;
+				const id = card.getAttribute("data-artist");
+				if (!id) return;
+				window.location.href = `/artista?id=${encodeURIComponent(id)}`;
+			});
+		});
+	</script>
+
+	<script>
+		// Clic en tarjeta de merch -> redirige a detalle
+		document.querySelectorAll(".merch-card").forEach((card) => {
+			card.addEventListener("click", (e) => {
+				// Evita conflicto si se clicó el botón "comprar"
+				if ((e.target as HTMLElement).tagName.toLowerCase() === "a") return;
+				const id = card.getAttribute("data-merch");
+				if (!id) return;
+				window.location.href = `/merch?id=${encodeURIComponent(id)}`;
+			});
+		});
+	</script>
+
+	<script>
+		// blog
+		document.querySelectorAll(".blog-card").forEach((card) => {
+			card.addEventListener("click", (e) => {
+				if ((e.target as HTMLElement).tagName.toLowerCase() === "a") return;
+				const id = card.getAttribute("data-post");
+				if (!id) return;
+				window.location.href = `/post?id=${encodeURIComponent(id)}`;
+			});
+		});
+	</script>
+</BaseLayout>

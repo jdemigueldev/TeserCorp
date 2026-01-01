@@ -1,0 +1,61 @@
+---
+const { showTabs = false } = Astro.props;
+---
+
+<style>
+	/* Efecto de brillo al pasar por TESERCORP */
+	.shiny-text {
+		position: relative;
+		display: inline-block;
+		overflow: hidden;
+		background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.7) 50%, rgba(255, 255, 255, 0.1) 100%);
+		background-size: 200%;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		transition: background-position 0.6s ease-in-out;
+	}
+
+	.group:hover .shiny-text {
+		background-position: 200% center;
+	}
+</style>
+
+<!-- Top bar -->
+<header class="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-steel-900/70">
+	<div class="mx-auto max-w-7xl px-4 py-3 flex items-center gap-4">
+		<a href="/" class="flex items-center gap-3 group">
+			<div class="w-9 h-9 grid place-content-center bg-black border-steel-500 rounded-md shadow-inner overflow-hidden">
+				<img src="/iconotela.png" alt="TESERCORP cube" class="w-7 h-7 object-contain" />
+			</div>
+			<div class="leading-tight">
+				<h1 class="font-display text-xl tracking-widest text-white group-hover:text-hazard transition">
+					<span class="shiny-text">TESERCORP</span>
+				</h1>
+			</div>
+		</a>
+
+		{showTabs && (
+			<>
+				<nav class="ml-auto hidden md:flex items-center gap-2">
+					<button data-tab="events" class="tab-btn px-4 py-2 text-sm tracking-wide uppercase border border-steel-600 rounded-md hover:bg-steel-700/60">Próximos eventos</button>
+					<button data-tab="artists" class="tab-btn px-4 py-2 text-sm tracking-wide uppercase border border-steel-600 rounded-md hover:bg-steel-700/60">Artistas</button>
+					<button data-tab="merch" class="tab-btn px-4 py-2 text-sm tracking-wide uppercase border border-steel-600 rounded-md hover:bg-steel-700/60">Merch</button>
+					<button data-tab="blog" class="tab-btn px-4 py-2 text-sm tracking-wide uppercase border border-steel-600 rounded-md hover:bg-steel-700/60">Blog</button>
+					<button data-tab="contact" class="tab-btn px-4 py-2 text-sm tracking-wide uppercase border border-steel-600 rounded-md hover:bg-steel-700/60">Contacto</button>
+				</nav>
+
+				<!-- Mobile menu -->
+				<div class="md:hidden ml-auto">
+					<select id="mobileTabs" class="bg-steel-800 border border-steel-600 rounded-md px-3 py-2 text-sm">
+						<option value="events">Próximos eventos</option>
+						<option value="artists">Artistas</option>
+						<option value="merch">Merch</option>
+						<option value="contact">Contacto</option>
+						<option value="blog">Blog</option>
+					</select>
+				</div>
+			</>
+		)}
+	</div>
+	<div class="stripe h-1 w-full"></div>
+</header>

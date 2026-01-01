@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout 
+	title="TESERCORP — Post" 
+	description="Artículo / noticia TESERCORP"
+>
+	<!-- HEADER -->
+	<header class="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-steel-900/70 border-b border-steel-700/70">
+		<div class="mx-auto max-w-4xl px-4 py-3 flex items-center gap-4">
+			<a href="/" class="flex items-center gap-3 group">
+				<div class="w-9 h-9 grid place-content-center bg-black border-steel-500 rounded-md shadow-inner overflow-hidden">
+					<img src="/cube-teser.jpg" alt="TESERCORP cube" class="w-7 h-7 object-contain" />
+				</div>
+				<div class="leading-tight">
+					<h1 class="font-display text-xl tracking-widest text-white group-hover:text-hazard transition">TESERCORP</h1>
+					<p class="text-[10px] font-mono text-zincish uppercase leading-none">volver</p>
+				</div>
+			</a>
+		</div>
+	</header>
+
+	<!-- MAIN -->
+	<main class="flex-1">
+		<article class="mx-auto max-w-4xl px-4 py-10 md:py-16">
+			<!-- portada opcional -->
+			<div id="postCoverWrapper" class="mb-8 hidden">
+				<img id="postCover" src="" alt="Portada" class="w-full rounded-xl border border-steel-700/60 shadow-pane object-cover" />
+			</div>
+
+			<p id="postMeta" class="text-xs font-mono tracking-widest text-zincish uppercase mb-3"></p>
+			<h1 id="postTitle" class="text-3xl md:text-4xl text-white font-display leading-tight mb-4"></h1>
+			<p id="postIntro" class="text-zinc-300 text-lg mb-8"></p>
+
+			<div id="postBody" class="space-y-5 text-zinc-200 text-sm leading-relaxed"></div>
+
+			<div class="mt-10 flex gap-3">
+				<a href="/" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg font-mono text-sm border border-steel-600 hover:bg-steel-700/60"> ← Volver </a>
+				<a href="/#tab-blog" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg font-mono text-sm border border-hazard/60 hover:bg-hazard/10"> Ver más posts </a>
+			</div>
+		</article>
+	</main>
+
+	<Footer />
+
+	<script>
+		// Mini "BD" de posts
+		const POSTS: Record<string, {
+			meta: string;
+			title: string;
+			intro: string;
+			cover: string;
+			body: string[];
+		}> = {
+			"recap-teseracto": {
+				meta: "27 OCT 2025 · EVENTO",
+				title: "Recap: TESERACTO en Specka",
+				intro: "Documentación rápida del montaje, sonido y feedback de la primera edición.",
+				cover: "/Teseracto.jpg", // opcional
+				body: ["La idea de TESERACTO era clara: presión constante, mínima luz y cero postureo.", "Montamos iluminación en modo low-key porque el espacio ya tenía textura. Lo que más funcionó fue el cierre ácido con captura directa.", "Para la próxima edición queremos probar un espacio con techo más bajo para que el sub rebote distinto y meter un closing más percusivo."],
+			},
+			"industrial-2026": {
+				meta: "23 OCT 2025 · ARTÍCULO",
+				title: "Industrial / hardgroove: hacia dónde va",
+				intro: "Ideas que estamos probando en cabina y lo que vemos en otros colectivos.",
+				cover: "", // sin portada
+				body: ["Los tempos están subiendo pero lo que manda es la pegada y el low-end.", "Estamos viendo más híbridos techno / tribal / industrial con breaks entre medios. Eso mantiene la tensión sin quemar al público.", "Esto es parte de lo que queremos ir documentando en TESERCORP para que no se pierda el criterio y no se vuelva todo genérico."],
+			},
+			"drop-01": {
+				meta: "20 OCT 2025 · DROP",
+				title: "Drop 01: ropa funcional para club",
+				intro: "Por qué estamos tirando a prendas duras, pesadas y hechas en EU.",
+				cover: "/shirt.jpg",
+				body: ["Queremos que todo lo que salga con la marca TESER aguante: sudor, club, lavadora.", "Usamos 280gsm porque da cuerpo y queda mejor con serigrafía al agua.", "También nos interesa documentar el proceso de producción para que haya transparencia y consistencia en futuras colecciones."],
+			},
+		};
+
+		// leer ?id=...
+		const params = new URLSearchParams(window.location.search);
+		const id = params.get("id");
+		const post = id ? POSTS[id] : null;
+
+		if (!post) {
+			document.body.innerHTML = `
+		<main class="min-h-screen flex flex-col items-center justify-center text-center text-zinc-200 p-8 bg-steel-900">
+		  <h1 class="text-3xl font-display mb-4">Post no encontrado</h1>
+		  <p class="text-zincish mb-6">El enlace puede haber expirado o el post no existe.</p>
+		  <a href="/" class="px-4 py-2 border border-steel-600 rounded hover:bg-steel-700/60 font-mono text-sm">Volver</a>
+		</main>
+	  `;
+		} else {
+			// rellenar
+			const postMeta = document.getElementById("postMeta");
+			const postTitle = document.getElementById("postTitle");
+			const postIntro = document.getElementById("postIntro");
+			const postCover = document.getElementById("postCover") as HTMLImageElement;
+			const postCoverWrapper = document.getElementById("postCoverWrapper");
+			const bodyEl = document.getElementById("postBody");
+			
+			if (postMeta) postMeta.textContent = post.meta;
+			if (postTitle) postTitle.textContent = post.title;
+			if (postIntro) postIntro.textContent = post.intro;
+
+			// portada opcional
+			if (post.cover) {
+				if (postCover) postCover.src = post.cover;
+				postCoverWrapper?.classList.remove("hidden");
+			}
+
+			if (bodyEl) {
+				post.body.forEach((par) => {
+					const p = document.createElement("p");
+					p.textContent = par;
+					bodyEl.appendChild(p);
+				});
+			}
+		}
+	</script>
+</BaseLayout>
